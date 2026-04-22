@@ -210,22 +210,10 @@ let activeProductType = 'all';
 async function initRevenueByProduct() {
   const data = await fetchReport('revenue-by-product');
   if (!data || !data.length) { setEmpty('revenueProductBody', 6); return; }
-
-  // Store full data for filtering
   window._revenueProductData = data;
-
-  // Setup filter buttons
-  document.querySelectorAll('.type-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      activeProductType = btn.dataset.type;
-      renderRevenueByProduct(window._revenueProductData);
-    });
-  });
-
   renderRevenueByProduct(data);
 }
+
 
 function renderRevenueByProduct(data) {
   const filtered = activeProductType === 'all'
@@ -772,6 +760,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('dateRange')?.addEventListener('change', () => {
     if (sectionInits[currentSection]) sectionInits[currentSection]();
+  });
+
+   document.getElementById('productTypeFilter')?.addEventListener('click', (e) => {
+    const btn = e.target.closest('.type-btn');
+    if (!btn) return;
+    document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeProductType = btn.dataset.type;
+    if (window._revenueProductData) {
+      renderRevenueByProduct(window._revenueProductData);
+    }
   });
 
   navigateTo('overview');
