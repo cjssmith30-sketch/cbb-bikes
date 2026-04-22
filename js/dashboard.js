@@ -190,7 +190,9 @@ function renderRevenueByProduct(data) {
   document.getElementById('revenueProductChart').style.height = '340px';
   document.getElementById('revenueProductBody').innerHTML = filtered.map(p => `
     <tr>
+      <td class="td-num" style="color:var(--grey)">${p.PID}</td>
       <td class="td-name">${p.Name}</td>
+      <td>${p.Type}</td>
       <td>${p.Type}</td>
       <td class="td-num">${fmtN(p.units_sold)}</td>
       <td class="td-money">${fmt$(p.total_revenue)}</td>
@@ -255,6 +257,7 @@ async function initProfitByProduct() {
   document.getElementById('profitProductChart').style.height = '340px';
   document.getElementById('profitProductBody').innerHTML = data.map(p => `
     <tr>
+      <td class="td-num" style="color:var(--grey)">${p.PID}</td>
       <td class="td-name">${p.Name}</td>
       <td>${p.Type}</td>
       <td class="td-num">${fmtN(p.units_sold)}</td>
@@ -282,6 +285,7 @@ async function initBestSelling() {
   document.getElementById('bestSellingBody').innerHTML = data.map((p,i) => `
     <tr>
       <td class="td-num" style="color:${i<3?'var(--accent)':'var(--grey)'}">#${i+1}</td>
+      <td class="td-num" style="color:var(--grey)">${p.PID}</td>
       <td class="td-name">${p.Name}</td>
       <td>${p.Type}</td>
       <td class="td-num">${fmtN(p.units_sold)}</td>
@@ -297,6 +301,7 @@ async function initLagging() {
   if (!data || !data.length) { setEmpty('laggingBody', 7, 'No lagging products — all products are performing above average!'); return; }
   document.getElementById('laggingBody').innerHTML = data.map(p => `
     <tr>
+      <td class="td-num" style="color:var(--grey)">${p.PID}</td>
       <td class="td-name">${p.Name}</td>
       <td>${p.Type}</td>
       <td class="td-money">${fmt$(p.Price)}</td>
