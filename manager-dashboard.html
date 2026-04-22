@@ -11,47 +11,37 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 </head>
 <body class="dashboard-body">
-  <!-- SIDEBAR -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-logo">CBB<span>BIKES</span></div>
     <div class="sidebar-section">
       <span class="sidebar-section-label">Overview</span>
-      <a href="#overview" class="sidebar-link active" data-section="overview">
-        <span class="s-icon">📊</span> Dashboard
-      </a>
+      <a href="#" class="sidebar-link active" data-section="overview"><span class="s-icon">📊</span> Dashboard</a>
     </div>
     <div class="sidebar-section">
       <span class="sidebar-section-label">Revenue</span>
-      <a href="#revenue-product" class="sidebar-link" data-section="revenue-product">
-        <span class="s-icon">💰</span> Revenue by Product
-      </a>
-      <a href="#revenue-time" class="sidebar-link" data-section="revenue-time">
-        <span class="s-icon">📈</span> Revenue Over Time
-      </a>
-      <a href="#profit-product" class="sidebar-link" data-section="profit-product">
-        <span class="s-icon">📉</span> Profit by Product
-      </a>
+      <a href="#" class="sidebar-link" data-section="revenue-product"><span class="s-icon">💰</span> Revenue by Product</a>
+      <a href="#" class="sidebar-link" data-section="revenue-time"><span class="s-icon">📈</span> Monthly Revenue Trend</a>
+      <a href="#" class="sidebar-link" data-section="profit-product"><span class="s-icon">📉</span> Profit by Product</a>
     </div>
     <div class="sidebar-section">
       <span class="sidebar-section-label">Products</span>
-      <a href="#best-selling" class="sidebar-link" data-section="best-selling">
-        <span class="s-icon">🏆</span> Best Selling
-      </a>
-      <a href="#lagging" class="sidebar-link" data-section="lagging">
-        <span class="s-icon">⚠️</span> Lagging Products
-      </a>
+      <a href="#" class="sidebar-link" data-section="best-selling"><span class="s-icon">🏆</span> Best Selling</a>
+      <a href="#" class="sidebar-link" data-section="lagging"><span class="s-icon">⚠️</span> Lagging Products</a>
     </div>
     <div class="sidebar-section">
       <span class="sidebar-section-label">Employees</span>
-      <a href="#emp-transactions" class="sidebar-link" data-section="emp-transactions">
-        <span class="s-icon">🔢</span> Transaction Count
-      </a>
-      <a href="#emp-revenue" class="sidebar-link" data-section="emp-revenue">
-        <span class="s-icon">👤</span> Total Revenue
-      </a>
-      <a href="#emp-avg" class="sidebar-link" data-section="emp-avg">
-        <span class="s-icon">📐</span> Avg Transaction Value
-      </a>
+      <a href="#" class="sidebar-link" data-section="emp-transactions"><span class="s-icon">🔢</span> Transaction Count</a>
+      <a href="#" class="sidebar-link" data-section="emp-revenue"><span class="s-icon">👤</span> Total Revenue</a>
+      <a href="#" class="sidebar-link" data-section="emp-avg"><span class="s-icon">📐</span> Avg Transaction Value</a>
+    </div>
+    <div class="sidebar-section">
+      <span class="sidebar-section-label">Bike Week</span>
+      <a href="#" class="sidebar-link" data-section="bwp-roster"><span class="s-icon">📋</span> Participant Roster</a>
+      <a href="#" class="sidebar-link" data-section="bwp-state"><span class="s-icon">🗺️</span> Participants by State</a>
+      <a href="#" class="sidebar-link" data-section="event-counts"><span class="s-icon">🏁</span> Event Participation</a>
+      <a href="#" class="sidebar-link" data-section="bwp-revenue"><span class="s-icon">💵</span> Participant Revenue</a>
+      <a href="#" class="sidebar-link" data-section="guardian-revenue"><span class="s-icon">👪</span> Guardian Revenue</a>
+      <a href="#" class="sidebar-link" data-section="discount-impact"><span class="s-icon">🏷️</span> Discount Impact</a>
     </div>
     <div class="sidebar-footer">
       <a href="index.html" class="sidebar-link"><span class="s-icon">🌐</span> View Website</a>
@@ -59,20 +49,17 @@
     </div>
   </aside>
 
-  <!-- MAIN -->
   <main class="dash-main">
     <header class="dash-header">
       <button class="sidebar-toggle" id="sidebarToggle">☰</button>
       <div class="dash-title" id="dashTitle">Dashboard</div>
       <div class="dash-header-right">
-        <div class="date-range-wrap">
-          <select id="dateRange" class="date-range-select">
-            <option value="7">Last 7 days</option>
-            <option value="30" selected>Last 30 days</option>
-            <option value="90">Last 90 days</option>
-            <option value="365">Last year</option>
-          </select>
-        </div>
+        <select id="dateRange" class="date-range-select">
+          <option value="7">Last 7 days</option>
+          <option value="30" selected>Last 30 days</option>
+          <option value="90">Last 90 days</option>
+          <option value="365">Last year</option>
+        </select>
         <div class="manager-badge">
           <span class="manager-avatar">M</span>
           <span>Manager</span>
@@ -80,200 +67,196 @@
       </div>
     </header>
 
-    <!-- OVERVIEW SECTION -->
+    <!-- OVERVIEW -->
     <section class="dash-section active" id="section-overview">
       <div class="kpi-grid">
-        <div class="kpi-card">
-          <div class="kpi-label">Total Revenue</div>
-          <div class="kpi-value" id="kpi-revenue">$0</div>
-          <div class="kpi-delta positive">+12.4% vs last period</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Transactions</div>
-          <div class="kpi-value" id="kpi-transactions">0</div>
-          <div class="kpi-delta positive">+8.1% vs last period</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Avg. Order Value</div>
-          <div class="kpi-value" id="kpi-aov">$0</div>
-          <div class="kpi-delta neutral">+0.3% vs last period</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Products Sold</div>
-          <div class="kpi-value" id="kpi-products">0</div>
-          <div class="kpi-delta negative">-2.1% vs last period</div>
-        </div>
+        <div class="kpi-card"><div class="kpi-label">Total Revenue</div><div class="kpi-value" id="kpi-revenue">—</div><div class="kpi-delta" id="kpi-revenue-delta">vs prior period</div></div>
+        <div class="kpi-card"><div class="kpi-label">Transactions</div><div class="kpi-value" id="kpi-transactions">—</div><div class="kpi-delta" id="kpi-trans-delta">vs prior period</div></div>
+        <div class="kpi-card"><div class="kpi-label">Avg. Order Value</div><div class="kpi-value" id="kpi-aov">—</div><div class="kpi-delta" id="kpi-aov-delta">vs prior period</div></div>
+        <div class="kpi-card"><div class="kpi-label">Unique Customers</div><div class="kpi-value" id="kpi-customers">—</div><div class="kpi-delta neutral">active buyers</div></div>
       </div>
       <div class="charts-row">
-        <div class="chart-card wide">
-          <div class="chart-card-header">
-            <h4>Revenue Trend</h4>
-            <span class="chart-period">Last 30 Days</span>
-          </div>
-          <canvas id="overviewRevenueChart"></canvas>
-        </div>
-        <div class="chart-card">
-          <div class="chart-card-header">
-            <h4>Sales Mix</h4>
-          </div>
-          <canvas id="overviewMixChart"></canvas>
-        </div>
+        <div class="chart-card wide"><div class="chart-card-header"><h4>Revenue Trend</h4><span class="chart-period" id="overviewPeriodLabel">Last 30 Days</span></div><canvas id="overviewRevenueChart"></canvas></div>
+        <div class="chart-card"><div class="chart-card-header"><h4>Sales Mix</h4></div><canvas id="overviewMixChart"></canvas></div>
       </div>
       <div class="charts-row">
-        <div class="chart-card">
-          <div class="chart-card-header"><h4>Top 5 Employees by Revenue</h4></div>
-          <canvas id="overviewEmpChart"></canvas>
-        </div>
-        <div class="chart-card">
-          <div class="chart-card-header"><h4>Top Products</h4></div>
-          <canvas id="overviewTopProducts"></canvas>
-        </div>
+        <div class="chart-card"><div class="chart-card-header"><h4>Top Employees by Revenue</h4></div><canvas id="overviewEmpChart"></canvas></div>
+        <div class="chart-card"><div class="chart-card-header"><h4>Top Products by Units</h4></div><canvas id="overviewTopProducts"></canvas></div>
       </div>
     </section>
 
-    <!-- REVENUE BY PRODUCT -->
+    <!-- 1. REVENUE BY PRODUCT -->
     <section class="dash-section" id="section-revenue-product">
-      <div class="section-title-row">
-        <h2>Revenue by Product</h2>
-        <button class="btn-export" onclick="exportCSV('revenue-product')">Export CSV</button>
-      </div>
-      <div class="charts-row">
-        <div class="chart-card wide">
-          <canvas id="revenueProductChart"></canvas>
-        </div>
-      </div>
+      <div class="section-title-row"><h2>Revenue by Product</h2><button class="btn-export" onclick="exportTableCSV('revenueProductTable','revenue-by-product')">Export CSV</button></div>
+      <div class="chart-card full"><canvas id="revenueProductChart" style="height:340px"></canvas></div>
       <div class="data-table-wrap">
         <table class="data-table" id="revenueProductTable">
-          <thead><tr><th>Product</th><th>Category</th><th>Units Sold</th><th>Revenue</th><th>% of Total</th></tr></thead>
-          <tbody id="revenueProductBody"></tbody>
+          <thead><tr><th>Product</th><th>Type</th><th>Units Sold</th><th>Revenue</th><th>Cost</th><th>Gross Profit</th></tr></thead>
+          <tbody id="revenueProductBody"><tr><td colspan="6" class="loading-row">Loading…</td></tr></tbody>
         </table>
       </div>
     </section>
 
-    <!-- REVENUE OVER TIME -->
+    <!-- 2. MONTHLY REVENUE TREND -->
     <section class="dash-section" id="section-revenue-time">
-      <div class="section-title-row">
-        <h2>Revenue Over Time</h2>
-        <div class="chart-toggle">
-          <button class="toggle-btn active" data-period="daily">Daily</button>
-          <button class="toggle-btn" data-period="weekly">Weekly</button>
-          <button class="toggle-btn" data-period="monthly">Monthly</button>
-        </div>
-        <button class="btn-export" onclick="exportCSV('revenue-time')">Export CSV</button>
-      </div>
-      <div class="chart-card full">
-        <canvas id="revenueTimeChart"></canvas>
+      <div class="section-title-row"><h2>Monthly Revenue Trend</h2><button class="btn-export" onclick="exportTableCSV('revenueTimeTable','monthly-revenue')">Export CSV</button></div>
+      <div class="chart-card full"><canvas id="revenueTimeChart" style="height:340px"></canvas></div>
+      <div class="data-table-wrap">
+        <table class="data-table" id="revenueTimeTable">
+          <thead><tr><th>Month</th><th>Revenue</th><th>Cost</th><th>Profit</th><th>Transactions</th><th>Unique Customers</th></tr></thead>
+          <tbody id="revenueTimeBody"><tr><td colspan="6" class="loading-row">Loading…</td></tr></tbody>
+        </table>
       </div>
     </section>
 
-    <!-- PROFIT BY PRODUCT -->
+    <!-- 3. PROFIT BY PRODUCT -->
     <section class="dash-section" id="section-profit-product">
-      <div class="section-title-row">
-        <h2>Profit by Product</h2>
-        <button class="btn-export" onclick="exportCSV('profit-product')">Export CSV</button>
-      </div>
-      <div class="charts-row">
-        <div class="chart-card wide">
-          <canvas id="profitProductChart"></canvas>
-        </div>
-      </div>
+      <div class="section-title-row"><h2>Profit by Product</h2><button class="btn-export" onclick="exportTableCSV('profitProductTable','profit-by-product')">Export CSV</button></div>
+      <div class="chart-card full"><canvas id="profitProductChart" style="height:340px"></canvas></div>
       <div class="data-table-wrap">
-        <table class="data-table">
-          <thead><tr><th>Product</th><th>Revenue</th><th>COGS</th><th>Gross Profit</th><th>Margin %</th></tr></thead>
-          <tbody id="profitProductBody"></tbody>
+        <table class="data-table" id="profitProductTable">
+          <thead><tr><th>Product</th><th>Type</th><th>Units</th><th>Revenue</th><th>COGS</th><th>Gross Profit</th><th>Margin %</th></tr></thead>
+          <tbody id="profitProductBody"><tr><td colspan="7" class="loading-row">Loading…</td></tr></tbody>
         </table>
       </div>
     </section>
 
-    <!-- BEST SELLING -->
+    <!-- 4. BEST SELLING -->
     <section class="dash-section" id="section-best-selling">
-      <div class="section-title-row">
-        <h2>Best Selling Products</h2>
-        <button class="btn-export" onclick="exportCSV('best-selling')">Export CSV</button>
-      </div>
+      <div class="section-title-row"><h2>Best Selling Products</h2><button class="btn-export" onclick="exportTableCSV('bestSellingTable','best-selling')">Export CSV</button></div>
       <div class="charts-row">
-        <div class="chart-card">
-          <canvas id="bestSellingChart"></canvas>
-        </div>
-        <div class="chart-card">
-          <canvas id="bestSellingRevChart"></canvas>
-        </div>
+        <div class="chart-card"><canvas id="bestSellingChart"></canvas></div>
+        <div class="chart-card"><canvas id="bestSellingRevChart"></canvas></div>
       </div>
       <div class="data-table-wrap">
-        <table class="data-table">
-          <thead><tr><th>Rank</th><th>Product</th><th>Type</th><th>Units</th><th>Revenue</th><th>Trend</th></tr></thead>
-          <tbody id="bestSellingBody"></tbody>
+        <table class="data-table" id="bestSellingTable">
+          <thead><tr><th>Rank</th><th>Product</th><th>Type</th><th>Units Sold</th><th>Revenue</th><th>Unique Customers</th><th>% of Revenue</th></tr></thead>
+          <tbody id="bestSellingBody"><tr><td colspan="7" class="loading-row">Loading…</td></tr></tbody>
         </table>
       </div>
     </section>
 
-    <!-- LAGGING PRODUCTS -->
+    <!-- 5. LAGGING PRODUCTS -->
     <section class="dash-section" id="section-lagging">
-      <div class="section-title-row">
-        <h2>Lagging Products</h2>
-        <div class="alert-info">Products with below-average performance in selected period</div>
-      </div>
+      <div class="section-title-row"><h2>Lagging Products</h2><div class="alert-info">Below average performers in selected period</div></div>
       <div class="data-table-wrap">
-        <table class="data-table">
-          <thead><tr><th>Product</th><th>Type</th><th>Units Sold</th><th>Revenue</th><th>Days in Stock</th><th>Status</th></tr></thead>
-          <tbody id="laggingBody"></tbody>
+        <table class="data-table" id="laggingTable">
+          <thead><tr><th>Product</th><th>Type</th><th>Price</th><th>Units Sold</th><th>Revenue</th><th>Days Listed</th><th>Status</th></tr></thead>
+          <tbody id="laggingBody"><tr><td colspan="7" class="loading-row">Loading…</td></tr></tbody>
         </table>
       </div>
     </section>
 
-    <!-- EMPLOYEE TRANSACTION COUNT -->
+    <!-- 6. EMP TRANSACTION COUNT -->
     <section class="dash-section" id="section-emp-transactions">
-      <div class="section-title-row">
-        <h2>Employee Transaction Count</h2>
-        <button class="btn-export" onclick="exportCSV('emp-transactions')">Export CSV</button>
-      </div>
-      <div class="chart-card full">
-        <canvas id="empTransChart"></canvas>
-      </div>
+      <div class="section-title-row"><h2>Employee Transaction Count</h2><button class="btn-export" onclick="exportTableCSV('empTransTable','emp-transactions')">Export CSV</button></div>
+      <div class="chart-card full"><canvas id="empTransChart" style="height:300px"></canvas></div>
       <div class="data-table-wrap">
-        <table class="data-table">
-          <thead><tr><th>Employee</th><th>EID</th><th>Transactions</th><th>Period</th><th>vs Avg</th></tr></thead>
-          <tbody id="empTransBody"></tbody>
+        <table class="data-table" id="empTransTable">
+          <thead><tr><th>Employee</th><th>EID</th><th>Transactions</th><th>Total Revenue</th><th>vs Team Avg</th></tr></thead>
+          <tbody id="empTransBody"><tr><td colspan="5" class="loading-row">Loading…</td></tr></tbody>
         </table>
       </div>
     </section>
 
-    <!-- EMPLOYEE TOTAL REVENUE -->
+    <!-- 7. EMP TOTAL REVENUE -->
     <section class="dash-section" id="section-emp-revenue">
-      <div class="section-title-row">
-        <h2>Employee Total Revenue</h2>
-        <button class="btn-export" onclick="exportCSV('emp-revenue')">Export CSV</button>
-      </div>
-      <div class="chart-card full">
-        <canvas id="empRevChart"></canvas>
-      </div>
+      <div class="section-title-row"><h2>Employee Total Revenue</h2><button class="btn-export" onclick="exportTableCSV('empRevTable','emp-revenue')">Export CSV</button></div>
+      <div class="chart-card full"><canvas id="empRevChart" style="height:300px"></canvas></div>
       <div class="data-table-wrap">
-        <table class="data-table">
-          <thead><tr><th>Employee</th><th>EID</th><th>Total Revenue</th><th>Commission</th><th>% of Total</th></tr></thead>
-          <tbody id="empRevBody"></tbody>
+        <table class="data-table" id="empRevTable">
+          <thead><tr><th>Employee</th><th>EID</th><th>Transactions</th><th>Total Revenue</th><th>Commission Rate</th><th>Commission Earned</th><th>% of Total</th></tr></thead>
+          <tbody id="empRevBody"><tr><td colspan="7" class="loading-row">Loading…</td></tr></tbody>
         </table>
       </div>
     </section>
 
-    <!-- EMPLOYEE AVG TRANSACTION VALUE -->
+    <!-- 8. EMP AVG TRANSACTION -->
     <section class="dash-section" id="section-emp-avg">
-      <div class="section-title-row">
-        <h2>Employee Avg. Transaction Value</h2>
-        <button class="btn-export" onclick="exportCSV('emp-avg')">Export CSV</button>
+      <div class="section-title-row"><h2>Employee Avg. Transaction Value</h2><button class="btn-export" onclick="exportTableCSV('empAvgTable','emp-avg')">Export CSV</button></div>
+      <div class="chart-card full"><canvas id="empAvgChart" style="height:300px"></canvas></div>
+      <div class="data-table-wrap">
+        <table class="data-table" id="empAvgTable">
+          <thead><tr><th>Employee</th><th>EID</th><th>Transactions</th><th>Total Revenue</th><th>Avg Value</th><th>Max Sale</th><th>Rating</th></tr></thead>
+          <tbody id="empAvgBody"><tr><td colspan="7" class="loading-row">Loading…</td></tr></tbody>
+        </table>
       </div>
-      <div class="chart-card full">
-        <canvas id="empAvgChart"></canvas>
+    </section>
+
+    <!-- 9. BWP ROSTER -->
+    <section class="dash-section" id="section-bwp-roster">
+      <div class="section-title-row"><h2>Bike Week Participant Roster</h2><button class="btn-export" onclick="exportTableCSV('rosterTable','bwp-roster')">Export CSV</button></div>
+      <div class="data-table-wrap">
+        <table class="data-table" id="rosterTable">
+          <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>City</th><th>State</th><th>Cycle Type</th><th>Age Bracket</th><th>Liability</th><th>Discount</th><th>Events</th></tr></thead>
+          <tbody id="rosterBody"><tr><td colspan="10" class="loading-row">Loading…</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 10. BWP BY STATE -->
+    <section class="dash-section" id="section-bwp-state">
+      <div class="section-title-row"><h2>Participants by State</h2><button class="btn-export" onclick="exportTableCSV('stateTable','bwp-by-state')">Export CSV</button></div>
+      <div class="chart-card full"><canvas id="stateChart" style="height:300px"></canvas></div>
+      <div class="data-table-wrap">
+        <table class="data-table" id="stateTable">
+          <thead><tr><th>State</th><th>Participants</th><th>Event Registrations</th><th>% of Total</th></tr></thead>
+          <tbody id="stateBody"><tr><td colspan="4" class="loading-row">Loading…</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 11. EVENT PARTICIPATION -->
+    <section class="dash-section" id="section-event-counts">
+      <div class="section-title-row"><h2>Event Participation Counts</h2><button class="btn-export" onclick="exportTableCSV('eventCountsTable','event-participation')">Export CSV</button></div>
+      <div class="chart-card full"><canvas id="eventCountsChart" style="height:300px"></canvas></div>
+      <div class="data-table-wrap">
+        <table class="data-table" id="eventCountsTable">
+          <thead><tr><th>Event</th><th>Date</th><th>Type</th><th>Location</th><th>Reg Fee</th><th>Participants</th><th>Reg Revenue</th></tr></thead>
+          <tbody id="eventCountsBody"><tr><td colspan="7" class="loading-row">Loading…</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 12. BWP REVENUE -->
+    <section class="dash-section" id="section-bwp-revenue">
+      <div class="section-title-row"><h2>Revenue: Participants vs Non-Participants</h2><button class="btn-export" onclick="exportTableCSV('bwpRevTable','bwp-revenue')">Export CSV</button></div>
+      <div class="charts-row">
+        <div class="chart-card"><canvas id="bwpRevPieChart"></canvas></div>
+        <div class="chart-card"><canvas id="bwpRevBarChart"></canvas></div>
       </div>
       <div class="data-table-wrap">
-        <table class="data-table">
-          <thead><tr><th>Employee</th><th>EID</th><th>Transactions</th><th>Total Revenue</th><th>Avg Value</th><th>Rating</th></tr></thead>
-          <tbody id="empAvgBody"></tbody>
+        <table class="data-table" id="bwpRevTable">
+          <thead><tr><th>Customer Group</th><th>Customers</th><th>Transactions</th><th>Total Revenue</th><th>Avg Transaction</th><th>% of Revenue</th></tr></thead>
+          <tbody id="bwpRevBody"><tr><td colspan="6" class="loading-row">Loading…</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 13. GUARDIAN REVENUE -->
+    <section class="dash-section" id="section-guardian-revenue">
+      <div class="section-title-row"><h2>Revenue Attributable to Guardians</h2><button class="btn-export" onclick="exportTableCSV('guardianTable','guardian-revenue')">Export CSV</button></div>
+      <div class="data-table-wrap">
+        <table class="data-table" id="guardianTable">
+          <thead><tr><th>Guardian Name</th><th>Participant</th><th>City</th><th>State</th><th>Transactions</th><th>Total Revenue</th><th>Avg Transaction</th></tr></thead>
+          <tbody id="guardianBody"><tr><td colspan="7" class="loading-row">Loading…</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 14. DISCOUNT IMPACT -->
+    <section class="dash-section" id="section-discount-impact">
+      <div class="section-title-row"><h2>Bike Week Discount Impact by Category</h2><button class="btn-export" onclick="exportTableCSV('discountTable','discount-impact')">Export CSV</button></div>
+      <div class="chart-card full"><canvas id="discountChart" style="height:300px"></canvas></div>
+      <div class="data-table-wrap">
+        <table class="data-table" id="discountTable">
+          <thead><tr><th>Category</th><th>Transactions</th><th>Units</th><th>Gross Revenue</th><th>Total Discount</th><th>Net Revenue</th><th>Avg Discount %</th><th>BWP Discount</th></tr></thead>
+          <tbody id="discountBody"><tr><td colspan="8" class="loading-row">Loading…</td></tr></tbody>
         </table>
       </div>
     </section>
 
   </main>
-
   <script src="js/dashboard.js"></script>
 </body>
 </html>
