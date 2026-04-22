@@ -1,0 +1,20 @@
+{
+  "name": "cbb-bikes",
+  "version": "1.0.0",
+  "description": "CBB Bikes website with Netlify Functions backend",
+  "private": true,
+  "scripts": {
+    "dev": "netlify dev",
+    "build": "echo 'Static site — no build step required'",
+    "functions:install": "cd netlify/functions && npm install"
+  },
+  "dependencies": {
+    "mysql2": "^3.6.5"
+  },
+  "devDependencies": {
+    "netlify-cli": "^17.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

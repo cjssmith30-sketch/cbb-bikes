@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bikes — CBB Bikes</title>
+  <link rel="stylesheet" href="css/global.css"/>
+  <link rel="stylesheet" href="css/bikes.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="nav" id="mainNav">
+    <a href="index.html" class="nav-logo">CBB<span>BIKES</span></a>
+    <ul class="nav-links">
+      <li><a href="bikes.html" class="active">Bikes</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="manager-login.html" class="btn-ghost">Manager</a>
+      <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="bikes.html">Bikes</a><a href="services.html">Services</a>
+    <a href="events.html">Events</a><a href="about.html">About</a>
+    <a href="contact.html">Contact</a><a href="manager-login.html">Manager Login</a>
+  </div>
+
+  <div class="page-hero">
+    <h1>OUR <em>BIKES</em></h1>
+    <p>From custom fabricated frames to race-ready stock builds — find your perfect ride.</p>
+  </div>
+
+  <section class="bikes-section">
+    <div class="filters-bar">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="stock">Stock</button>
+      <button class="filter-btn" data-filter="custom">Custom</button>
+      <button class="filter-btn" data-filter="road">Road</button>
+      <button class="filter-btn" data-filter="mountain">Mountain</button>
+      <div class="filters-right">
+        <input type="text" class="search-input" placeholder="Search bikes…" id="bikeSearch"/>
+        <select class="sort-select" id="bikeSort">
+          <option value="default">Sort: Featured</option>
+          <option value="price-asc">Price: Low → High</option>
+          <option value="price-desc">Price: High → Low</option>
+          <option value="name">Name A-Z</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="catalog-grid" id="catalogGrid">
+      <!-- populated by JS -->
+    </div>
+  </section>
+
+  <!-- PRODUCT MODAL -->
+  <div class="modal-overlay" id="productModal">
+    <div class="modal-box">
+      <button class="modal-close" id="modalClose">✕</button>
+      <div class="modal-content" id="modalContent"></div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">CBB<span>BIKES</span></div>
+        <p>Built for riders, by riders. Durango, Colorado.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col"><h5>Shop</h5><a href="bikes.html">All Bikes</a></div>
+        <div class="footer-col"><h5>Company</h5><a href="about.html">About Us</a><a href="contact.html">Contact</a></div>
+        <div class="footer-col"><h5>Account</h5><a href="manager-login.html">Manager Login</a></div>
+      </div>
+    </div>
+    <div class="footer-bottom"><span>© 2025 CBB Bikes.</span><span>Durango, Colorado</span></div>
+  </footer>
+
+  <script src="js/nav.js"></script>
+  <script src="js/bikes.js"></script>
+</body>
+</html>

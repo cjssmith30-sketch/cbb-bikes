@@ -1,0 +1,192 @@
+/* ── BIKES PAGE ── */
+.bikes-section {
+  padding: 0 40px 80px;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.filters-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--light-grey);
+  padding: 8px 18px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--transition);
+  font-family: var(--font-body);
+}
+.filter-btn:hover, .filter-btn.active {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(232,255,74,0.06);
+}
+
+.filters-right {
+  margin-left: auto;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.search-input {
+  background: var(--dark-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--white);
+  padding: 8px 16px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  width: 200px;
+  outline: none;
+  transition: border-color var(--transition);
+}
+.search-input:focus { border-color: var(--accent); }
+.search-input::placeholder { color: var(--mid); }
+
+.sort-select {
+  background: var(--dark-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--light-grey);
+  padding: 8px 16px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  outline: none;
+  cursor: pointer;
+}
+
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.catalog-card {
+  background: var(--dark);
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+.catalog-card:hover { background: var(--dark-2); }
+
+.catalog-img {
+  aspect-ratio: 4/3;
+  background: var(--dark-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+  padding: 20px;
+}
+
+.catalog-img svg {
+  width: 70%;
+  transition: transform 0.3s ease;
+}
+.catalog-card:hover .catalog-img svg {
+  transform: scale(1.05);
+}
+
+.catalog-body {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.catalog-body h3 { font-size: 24px; }
+.catalog-body p { font-size: 13px; color: var(--grey); flex: 1; }
+
+.catalog-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  margin-top: 8px;
+}
+
+.catalog-price {
+  font-family: var(--font-display);
+  font-size: 24px;
+  color: var(--accent);
+}
+
+.catalog-tag {
+  font-size: 10px;
+  font-family: var(--font-mono);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+  color: var(--grey);
+}
+
+/* Product Modal */
+.modal-content h2 { font-size: 42px; margin-bottom: 8px; }
+.modal-product-price {
+  font-family: var(--font-display);
+  font-size: 36px;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+.modal-product-desc {
+  color: var(--light-grey);
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+.modal-specs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.spec-item {
+  background: var(--dark-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px;
+}
+.spec-label {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--grey);
+  font-family: var(--font-mono);
+  margin-bottom: 4px;
+}
+.spec-value {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--white);
+}
+
+@media (max-width: 768px) {
+  .bikes-section { padding: 0 20px 60px; }
+  .filters-right { width: 100%; }
+  .search-input { width: 100%; flex: 1; }
+}

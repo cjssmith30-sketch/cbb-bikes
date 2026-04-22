@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Manager Login — CBB Bikes</title>
+  <link rel="stylesheet" href="css/global.css"/>
+  <link rel="stylesheet" href="css/manager.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body class="login-body">
+  <div class="login-page">
+    <div class="login-left">
+      <a href="index.html" class="login-logo">CBB<span>BIKES</span></a>
+      <div class="login-tagline">
+        <h2>MANAGER<br><em>PORTAL</em></h2>
+        <p>Access reports, analytics, and business insights.</p>
+      </div>
+      <div class="login-decor">
+        <div class="decor-ring r1"></div>
+        <div class="decor-ring r2"></div>
+        <div class="decor-ring r3"></div>
+      </div>
+    </div>
+
+    <div class="login-right">
+      <div class="login-box">
+        <h3>Sign In</h3>
+        <p class="login-sub">Manager accounts only</p>
+
+        <div class="alert-box" id="loginError" style="display:none;">
+          Invalid credentials. Please try again.
+        </div>
+
+        <form class="login-form" id="loginForm">
+          <div class="form-group">
+            <label>Username</label>
+            <input type="text" id="loginUser" name="username" required placeholder="manager@cbbbikes.com"/>
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <div class="pw-wrap">
+              <input type="password" id="loginPass" name="password" required placeholder="••••••••"/>
+              <button type="button" class="pw-toggle" id="pwToggle">👁</button>
+            </div>
+          </div>
+          <button type="submit" class="btn-primary full-width" id="loginBtn">
+            <span id="loginBtnText">Sign In</span>
+            <span id="loginSpinner" style="display:none;">…</span>
+          </button>
+        </form>
+
+        <div class="login-demo">
+          <small>Demo: username <code>manager</code> / password <code>cbb2025</code></small>
+        </div>
+
+        <a href="index.html" class="back-link">← Back to Website</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/manager-login.js"></script>
+</body>
+</html>

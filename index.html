@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CBB Bikes — Ride Further</title>
+  <link rel="stylesheet" href="css/global.css"/>
+  <link rel="stylesheet" href="css/home.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- NAV -->
+  <nav class="nav" id="mainNav">
+    <a href="index.html" class="nav-logo">CBB<span>BIKES</span></a>
+    <ul class="nav-links">
+      <li><a href="bikes.html">Bikes</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="manager-login.html" class="btn-ghost">Manager</a>
+      <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="bikes.html">Bikes</a>
+    <a href="services.html">Services</a>
+    <a href="events.html">Events</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="manager-login.html">Manager Login</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-grid"></div>
+      <div class="hero-glow"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-tag">Est. Durango, CO</div>
+      <h1 class="hero-title">
+        <span class="line-1">BUILT</span>
+        <span class="line-2">FOR THE</span>
+        <span class="line-3">ROAD.</span>
+      </h1>
+      <p class="hero-sub">Custom fabricated. Performance engineered. Every bike tells a story — yours starts here.</p>
+      <div class="hero-cta">
+        <a href="bikes.html" class="btn-primary">Shop Bikes</a>
+        <a href="events.html" class="btn-outline">Bike Week Events</a>
+      </div>
+    </div>
+    <div class="hero-scroll">SCROLL</div>
+  </section>
+
+  <!-- STATS BAR -->
+  <section class="stats-bar">
+    <div class="stat">
+      <span class="stat-num" data-target="2400">0</span>
+      <span class="stat-label">Bikes Sold</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num" data-target="48">0</span>
+      <span class="stat-label">Event Races</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num" data-target="12">0</span>
+      <span class="stat-label">Years Running</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num" data-target="320">0</span>
+      <span class="stat-label">Custom Builds</span>
+    </div>
+  </section>
+
+  <!-- FEATURED BIKES -->
+  <section class="section bikes-preview">
+    <div class="section-header">
+      <span class="section-tag">Our Fleet</span>
+      <h2>FEATURED <em>BUILDS</em></h2>
+    </div>
+    <div class="bikes-grid">
+      <div class="bike-card" data-type="custom">
+        <div class="bike-card-img">
+          <div class="bike-placeholder custom-bike">
+            <svg viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50" cy="85" r="28" stroke="currentColor" stroke-width="3"/>
+              <circle cx="150" cy="85" r="28" stroke="currentColor" stroke-width="3"/>
+              <path d="M50 85 L90 40 L130 55 L150 85" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+              <path d="M90 40 L100 20 L120 40" stroke="currentColor" stroke-width="2.5"/>
+              <path d="M130 55 L150 45 L160 55" stroke="currentColor" stroke-width="2.5"/>
+            </svg>
+          </div>
+          <div class="bike-badge">Custom Build</div>
+        </div>
+        <div class="bike-card-body">
+          <h3>Apex Custom</h3>
+          <p>Hand-fabricated frame, your spec, your ride.</p>
+          <div class="bike-meta">
+            <span class="bike-type">Full Custom</span>
+            <span class="bike-price">From $3,200</span>
+          </div>
+          <a href="bikes.html" class="btn-card">Configure →</a>
+        </div>
+      </div>
+      <div class="bike-card featured" data-type="stock">
+        <div class="bike-card-img">
+          <div class="bike-placeholder stock-bike">
+            <svg viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50" cy="85" r="28" stroke="currentColor" stroke-width="3"/>
+              <circle cx="150" cy="85" r="28" stroke="currentColor" stroke-width="3"/>
+              <path d="M50 85 L85 38 L135 52 L150 85" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+              <path d="M85 38 L95 18 L115 38" stroke="currentColor" stroke-width="2.5"/>
+              <path d="M135 52 L155 42 L162 52" stroke="currentColor" stroke-width="2.5"/>
+              <circle cx="100" cy="62" r="10" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="bike-badge hot">🔥 Best Seller</div>
+        </div>
+        <div class="bike-card-body">
+          <h3>Velo Pro 9</h3>
+          <p>Race-ready geometry meets all-day comfort.</p>
+          <div class="bike-meta">
+            <span class="bike-type">Road / Race</span>
+            <span class="bike-price">$1,899</span>
+          </div>
+          <a href="bikes.html" class="btn-card">Shop Now →</a>
+        </div>
+      </div>
+      <div class="bike-card" data-type="trail">
+        <div class="bike-card-img">
+          <div class="bike-placeholder trail-bike">
+            <svg viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50" cy="85" r="30" stroke="currentColor" stroke-width="3"/>
+              <circle cx="150" cy="85" r="30" stroke="currentColor" stroke-width="3"/>
+              <path d="M50 85 L88 36 L140 50 L150 85" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/>
+              <path d="M88 36 L98 14 L118 36" stroke="currentColor" stroke-width="2.5"/>
+              <path d="M140 50 L158 40 L164 52" stroke="currentColor" stroke-width="2.5"/>
+              <line x1="100" y1="58" x2="100" y2="85" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="bike-badge">Trail</div>
+        </div>
+        <div class="bike-card-body">
+          <h3>Ridge Runner XT</h3>
+          <p>Mountain-ready suspension, aggressive stance.</p>
+          <div class="bike-meta">
+            <span class="bike-type">Mountain / Trail</span>
+            <span class="bike-price">$2,450</span>
+          </div>
+          <a href="bikes.html" class="btn-card">Explore →</a>
+        </div>
+      </div>
+    </div>
+    <div class="section-cta">
+      <a href="bikes.html" class="btn-primary">View All Bikes</a>
+    </div>
+  </section>
+
+  <!-- SERVICES STRIP -->
+  <section class="services-strip">
+    <div class="services-strip-inner">
+      <div class="service-item">
+        <div class="service-icon">⚙️</div>
+        <h4>Full Tune-Up</h4>
+        <p>Complete drivetrain service, brake adjustment & safety inspection.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">🔧</div>
+        <h4>Custom Fabrication</h4>
+        <p>Frame building from scratch — titanium, steel, aluminum.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">🏁</div>
+        <h4>Race Prep</h4>
+        <p>Competition-spec setup for Bike Week events and local races.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">🛡️</div>
+        <h4>Protection Plans</h4>
+        <p>Annual maintenance plans to keep your ride in peak condition.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVENTS PREVIEW -->
+  <section class="section events-preview">
+    <div class="section-header">
+      <span class="section-tag">Upcoming</span>
+      <h2>BIKE WEEK <em>EVENTS</em></h2>
+    </div>
+    <div class="events-list" id="eventsPreview">
+      <!-- populated by JS -->
+      <div class="event-loading">Loading events…</div>
+    </div>
+    <div class="section-cta">
+      <a href="events.html" class="btn-outline">All Events & Registration</a>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee">
+      <span>CUSTOM BUILDS &nbsp;·&nbsp; RACE READY &nbsp;·&nbsp; BIKE WEEK &nbsp;·&nbsp; DURANGO CO &nbsp;·&nbsp; CBB BIKES &nbsp;·&nbsp; RIDE FURTHER &nbsp;·&nbsp; CUSTOM BUILDS &nbsp;·&nbsp; RACE READY &nbsp;·&nbsp; BIKE WEEK &nbsp;·&nbsp; DURANGO CO &nbsp;·&nbsp;</span>
+      <span>CUSTOM BUILDS &nbsp;·&nbsp; RACE READY &nbsp;·&nbsp; BIKE WEEK &nbsp;·&nbsp; DURANGO CO &nbsp;·&nbsp; CBB BIKES &nbsp;·&nbsp; RIDE FURTHER &nbsp;·&nbsp; CUSTOM BUILDS &nbsp;·&nbsp; RACE READY &nbsp;·&nbsp; BIKE WEEK &nbsp;·&nbsp; DURANGO CO &nbsp;·&nbsp;</span>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">CBB<span>BIKES</span></div>
+        <p>Built for riders, by riders. Durango, Colorado.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Shop</h5>
+          <a href="bikes.html">All Bikes</a>
+          <a href="bikes.html?type=custom">Custom Builds</a>
+          <a href="bikes.html?type=stock">Stock</a>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="about.html">About Us</a>
+          <a href="events.html">Events</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h5>Account</h5>
+          <a href="manager-login.html">Manager Login</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 CBB Bikes. All rights reserved.</span>
+      <span>Durango, Colorado</span>
+    </div>
+  </footer>
+
+  <script src="js/nav.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>
