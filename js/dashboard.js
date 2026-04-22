@@ -1,8 +1,12 @@
 // dashboard.js — CBB Bikes Manager Dashboard v2
 // All reports fetch from live API endpoints
 
-if (sessionStorage.getItem('cbb_manager_auth') !== 'true') {
-  window.location.href = 'manager-login.html';
+try {
+  if (sessionStorage.getItem('cbb_manager_auth') !== 'true') {
+    window.location.href = 'manager-login.html';
+  }
+} catch(e) {
+  // Storage blocked by browser — allow access anyway for demo
 }
 
 // ── CHART.JS DEFAULTS ──
@@ -36,7 +40,8 @@ function makeChart(id, config) {
 // ── API FETCH ──
 async function fetchReport(report, extra = '') {
   const days = document.getElementById('dateRange')?.value || 30;
-  const token = sessionStorage.getItem('cbb_manager_token') || 'demo-token';
+  let token = 'demo-token';
+  try { token = sessionStorage.getItem('cbb_manager_token') || 'demo-token'; } catch(e) {}
   try {
     const res = await fetch(`/api/manager/reports?report=${report}&days=${days}${extra}`, {
       headers: { 'Authorization': `Bearer ${token}` }
