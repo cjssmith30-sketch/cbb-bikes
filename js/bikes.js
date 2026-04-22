@@ -87,6 +87,7 @@ function renderCatalog(bikes) {
       </div>
       <div class="catalog-body">
         <h3>${bike.name}</h3>
+        <div style="font-family:var(--font-mono);font-size:11px;color:var(--grey);letter-spacing:0.1em;margin-top:-4px;">PID: ${bike.id}</div>
         <p>${bike.description.substring(0, 80)}…</p>
         <div class="catalog-footer">
           <span class="catalog-price">$${bike.price.toLocaleString()}</span>
@@ -171,6 +172,7 @@ function openModal(bike) {
       <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);">${bike.type} · ${bike.category}</span>
     </div>
     <h2>${bike.name}</h2>
+    <div style="font-family:var(--font-mono);font-size:12px;color:var(--grey);letter-spacing:0.15em;margin-bottom:4px;">PID: ${bike.id}</div>
     <div class="modal-product-price">$${bike.price.toLocaleString()} <span style="font-size:18px;color:var(--grey);text-decoration:line-through;">$${bike.msrp.toLocaleString()}</span></div>
     ${!bike.inStock ? '<div style="color:var(--orange);font-size:13px;margin-bottom:12px;">⚠ Waitlist only — contact us to reserve</div>' : ''}
     <p class="modal-product-desc">${bike.description}</p>

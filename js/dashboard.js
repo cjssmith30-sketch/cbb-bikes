@@ -205,15 +205,44 @@ async function initOverview() {
 }
 
 // ── 1. REVENUE BY PRODUCT ──
+let activeProductType = 'all';
+
 async function initRevenueByProduct() {
   const data = await fetchReport('revenue-by-product');
   if (!data || !data.length) { setEmpty('revenueProductBody', 6); return; }
 
+  // Store full data for filtering
+  window._revenueProductData = data;
+
+  // Setup filter buttons
+  document.querySelectorAll('.type-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeProductType = btn.dataset.type;
+      renderRevenueByProduct(window._revenueProductData);
+    });
+  });
+
+  renderRevenueByProduct(data);
+}
+
+function renderRevenueByProduct(data) {
+  const filtered = activeProductType === 'all'
+    ? data
+    : data.filter(p => p.Type === activeProductType);
+
+  if (!filtered.length) {
+    setEmpty('revenueProductBody', 6, `No ${activeProductType} products found in this period.`);
+    destroyChart('revenueProductChart');
+    return;
+  }
+
   makeChart('revenueProductChart', {
     type: 'bar',
     data: {
-      labels: data.map(p => p.Name.length > 18 ? p.Name.substring(0,18)+'…' : p.Name),
-      datasets: [{ label: 'Revenue', data: data.map(p => p.total_revenue), backgroundColor: PALETTE.map((c,i) => data[i] ? c : c), borderRadius: 4 }]
+      labels: filtered.map(p => p.Name.length > 18 ? p.Name.substring(0,18)+'…' : p.Name),
+      datasets: [{ label: 'Revenue', data: filtered.map(p => p.total_revenue), backgroundColor: PALETTE.map((c,i) => filtered[i] ? c : c), borderRadius: 4 }]
     },
     options: {
       responsive: true, maintainAspectRatio: false,
@@ -224,9 +253,10 @@ async function initRevenueByProduct() {
       }
     }
   });
+  document.getElementById('revenueProductChart').style.height = '340px';
 
-  const total = data.reduce((s,p) => s + parseFloat(p.total_revenue||0), 0);
-  document.getElementById('revenueProductBody').innerHTML = data.map(p => `
+  const total = filtered.reduce((s,p) => s + parseFloat(p.total_revenue||0), 0);
+  document.getElementById('revenueProductBody').innerHTML = filtered.map(p => `
     <tr>
       <td class="td-name">${p.Name}</td>
       <td>${p.Type}</td>

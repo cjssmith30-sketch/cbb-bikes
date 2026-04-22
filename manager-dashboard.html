@@ -87,7 +87,17 @@
 
     <!-- 1. REVENUE BY PRODUCT -->
     <section class="dash-section" id="section-revenue-product">
-      <div class="section-title-row"><h2>Revenue by Product</h2><button class="btn-export" onclick="exportTableCSV('revenueProductTable','revenue-by-product')">Export CSV</button></div>
+      <div class="section-title-row">
+  <h2>Revenue by Product</h2>
+  <div class="type-filter-wrap" id="productTypeFilter">
+    <button class="type-btn active" data-type="all">All</button>
+    <button class="type-btn" data-type="Bike">Bikes</button>
+    <button class="type-btn" data-type="Service">Services</button>
+    <button class="type-btn" data-type="Clothing">Clothing</button>
+    <button class="type-btn" data-type="Accessory">Accessories</button>
+  </div>
+  <button class="btn-export" onclick="exportTableCSV('revenueProductTable','revenue-by-product')">Export CSV</button>
+</div>
       <div class="chart-card full"><canvas id="revenueProductChart" style="height:340px"></canvas></div>
       <div class="data-table-wrap">
         <table class="data-table" id="revenueProductTable">
@@ -260,5 +270,6 @@
   <script src="js/dashboard.js"></script>
 </body>
 </html>
-< ! - -   u p d a t e d   - - >  
+< ! - -   u p d a t e d   - - > 
+ 
  
