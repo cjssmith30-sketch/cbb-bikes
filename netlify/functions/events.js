@@ -22,24 +22,24 @@ exports.handler = async (event) => {
   }
 
   try {
-    const conn = await mysql.createConnection(dbConfig);
-    const params = event.queryStringParameters || {};
-    const limit = parseInt(params.limit) || 20;
+  const conn = await mysql.createConnection(dbConfig);
+  const params = event.queryStringParameters || {};
+  const limit = parseInt(params.limit) || 20;
 
-    const [rows] = await conn.execute(`
-      SELECT 
-        e.EVID, e.Name, e.Date, e.Time, e.Location, e.Type,
-        e.Reg_Fee, e.Age_Bracket, e.Description,
-        COUNT(p.PEID) AS participant_count
-      FROM Event e
-      LEFT JOIN Participates p ON e.EVID = p.EVID
-      WHERE e.Date >= CURDATE()
-      GROUP BY e.EVID
-      ORDER BY e.Date ASC
-      LIMIT ?
-    `, [limit]);
+  const [rows] = await conn.execute(`
+SELECT
+  e.EVID, e.Name, e.Date, e.Time, e.Location, e.Type,
+  e.Reg_Fee, e.Age_Bracket, e.Description,
+  COUNT(p.PEID) AS participant_count
+FROM Event e
+LEFT JOIN Participates p ON e.EVID = p.EVID
+WHERE e.Date >= CURDATE()
+GROUP BY e.EVID
+ORDER BY e.Date ASC
+LIMIT ${limit}
+`);
 
-    await conn.end();
+  await conn.end();
 
     return {
       statusCode: 200,
