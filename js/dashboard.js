@@ -1,6 +1,7 @@
 // dashboard.js — CBB Bikes Manager Dashboard v2
 // All reports fetch from live API endpoints
 
+
 try {
   if (sessionStorage.getItem('cbb_manager_auth') !== 'true') {
     window.location.href = 'manager-login.html';
@@ -9,6 +10,7 @@ try {
   // Storage blocked by browser — allow access anyway for demo
 }
 
+let activeProductType = 'all';
 // ── CHART.JS DEFAULTS ──
 Chart.defaults.color = '#666666';
 Chart.defaults.borderColor = '#2a2a2a';
@@ -205,8 +207,6 @@ async function initOverview() {
 }
 
 // ── 1. REVENUE BY PRODUCT ──
-let activeProductType = 'all';
-
 async function initRevenueByProduct() {
   const data = await fetchReport('revenue-by-product');
   if (!data || !data.length) { setEmpty('revenueProductBody', 6); return; }
@@ -214,14 +214,13 @@ async function initRevenueByProduct() {
   renderRevenueByProduct(data);
 }
 
-
 function renderRevenueByProduct(data) {
   const filtered = activeProductType === 'all'
     ? data
     : data.filter(p => p.Type === activeProductType);
 
   if (!filtered.length) {
-    setEmpty('revenueProductBody', 6, `No ${activeProductType} products found in this period.`);
+    setEmpty('revenueProductBody', 6, `No ${activeProductType} products in this period.`);
     destroyChart('revenueProductChart');
     return;
   }
@@ -230,7 +229,7 @@ function renderRevenueByProduct(data) {
     type: 'bar',
     data: {
       labels: filtered.map(p => p.Name.length > 18 ? p.Name.substring(0,18)+'…' : p.Name),
-      datasets: [{ label: 'Revenue', data: filtered.map(p => p.total_revenue), backgroundColor: PALETTE.map((c,i) => filtered[i] ? c : c), borderRadius: 4 }]
+      datasets: [{ label: 'Revenue', data: filtered.map(p => p.total_revenue), backgroundColor: PALETTE, borderRadius: 4 }]
     },
     options: {
       responsive: true, maintainAspectRatio: false,
@@ -243,7 +242,6 @@ function renderRevenueByProduct(data) {
   });
   document.getElementById('revenueProductChart').style.height = '340px';
 
-  const total = filtered.reduce((s,p) => s + parseFloat(p.total_revenue||0), 0);
   document.getElementById('revenueProductBody').innerHTML = filtered.map(p => `
     <tr>
       <td class="td-name">${p.Name}</td>
@@ -759,18 +757,19 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   document.getElementById('dateRange')?.addEventListener('change', () => {
+    activeProductType = 'all';
+    document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector('.type-btn[data-type="all"]')?.classList.add('active');
     if (sectionInits[currentSection]) sectionInits[currentSection]();
   });
 
-   document.getElementById('productTypeFilter')?.addEventListener('click', (e) => {
+  document.getElementById('productTypeFilter')?.addEventListener('click', (e) => {
     const btn = e.target.closest('.type-btn');
     if (!btn) return;
     document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     activeProductType = btn.dataset.type;
-    if (window._revenueProductData) {
-      renderRevenueByProduct(window._revenueProductData);
-    }
+    if (window._revenueProductData) renderRevenueByProduct(window._revenueProductData);
   });
 
   navigateTo('overview');
