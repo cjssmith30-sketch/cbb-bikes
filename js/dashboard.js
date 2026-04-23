@@ -198,6 +198,7 @@ function renderRevenueByProduct(data) {
   <td style="color:var(--red);font-family:var(--font-mono)">${fmt$(p.total_cost)}</td>
   <td style="color:var(--green);font-family:var(--font-mono)">${fmt$(p.gross_profit)}</td>
 </tr>`).join('');
+makeSortable('revenueProductTable');
 }
 
 // ── 2. MONTHLY REVENUE TREND ──
@@ -231,6 +232,7 @@ async function initMonthlyRevenueTrend() {
       <td class="td-num">${fmtN(r.transaction_count)}</td>
       <td class="td-num">${fmtN(r.unique_customers)}</td>
     </tr>`).join('');
+    makeSortable('revenueTimeTable');
 }
 
 // ── 3. PROFIT BY PRODUCT ──
@@ -265,6 +267,7 @@ async function initProfitByProduct() {
       <td style="color:var(--green);font-family:var(--font-mono)">${fmt$(p.gross_profit)}</td>
       <td class="td-num">${fmtPct(p.margin_pct)}</td>
     </tr>`).join('');
+    makeSortable('profitProductTable');
 }
 
 // ── 4. BEST SELLING ──
@@ -292,6 +295,7 @@ async function initBestSelling() {
       <td class="td-num">${fmtN(p.unique_customers)}</td>
       <td class="td-num">${fmtPct(p.pct_of_revenue)}</td>
     </tr>`).join('');
+    makeSortable('bestSellingTable');
 }
 
 // ── 5. LAGGING PRODUCTS ──
@@ -309,6 +313,7 @@ async function initLagging() {
       <td class="td-num">${fmtN(p.days_in_catalog)}</td>
       <td><span class="${p.status==='No Sales'?'badge-bad':p.status==='Critical'?'badge-bad':'badge-warn'}">${p.status}</span></td>
     </tr>`).join('');
+    makeSortable('laggingTable');
 }
 
 // ── 6. EMP TRANSACTION COUNT ──
@@ -338,6 +343,7 @@ async function initEmpTransactions() {
       <td class="${vs>=0?'trend-up':'trend-down'}">${vs>=0?'+':''}${vs.toFixed(1)}</td>
     </tr>`;
   }).join('');
+  makeSortable('empTransTable');
 }
 
 // ── 7. EMP TOTAL REVENUE ──
@@ -360,7 +366,9 @@ async function initEmpRevenue() {
       <td style="color:var(--green);font-family:var(--font-mono)">${fmt$(e.commission_earned)}</td>
       <td class="td-num">${fmtPct(e.pct_of_total)}</td>
     </tr>`).join('');
+    makeSortable('empRevTable');
 }
+
 
 // ── 8. EMP AVG TRANSACTION ──
 async function initEmpAvg() {
@@ -389,9 +397,11 @@ async function initEmpAvg() {
       <td class="td-money">${fmt$(e.avg_transaction_value)}</td>
       <td class="td-money">${fmt$(e.max_transaction)}</td>
       <td><span class="${rc}">${e.rating}</span></td>
-    </tr>`;
-  }).join('');
+    </tr>`;}).join('');
+    makeSortable('empAvgTable');
+
 }
+
 
 // ── 9. BWP ROSTER ──
 async function initBWPRoster() {
@@ -410,8 +420,8 @@ async function initBWPRoster() {
       <td class="td-num">${fmtPct(parseFloat(p.Bike_Discount_Rate||0)*100)}</td>
       <td class="td-num">${fmtN(p.events_registered)}</td>
     </tr>`).join('');
+    makeSortable('rosterTable');
 }
-
 // ── 10. BWP BY STATE ──
 async function initBWPByState() {
   const data = await fetchReport('bwp-by-state');
@@ -429,6 +439,7 @@ async function initBWPByState() {
       <td class="td-num">${fmtN(r.total_event_registrations)}</td>
       <td class="td-num">${fmtPct(r.pct_of_total)}</td>
     </tr>`).join('');
+    makeSortable('stateTable');
 }
 
 // ── 11. EVENT PARTICIPATION ──
@@ -451,6 +462,7 @@ async function initEventCounts() {
       <td class="td-num">${fmtN(e.participant_count)}</td>
       <td class="td-money">${fmt$(e.total_registration_revenue)}</td>
     </tr>`).join('');
+    makeSortable('eventCountsTable');
 }
 
 // ── 12. BWP REVENUE ──
@@ -479,6 +491,7 @@ async function initBWPRevenue() {
       <td class="td-money">${fmt$(r.avg_transaction)}</td>
       <td class="td-num">${fmtPct(r.pct_of_total_revenue)}</td>
     </tr>`).join('');
+    makeSortable('bwpRevTable');
 }
 
 // ── 13. GUARDIAN REVENUE ──
@@ -495,6 +508,7 @@ async function initGuardianRevenue() {
       <td class="td-money">${fmt$(r.total_revenue)}</td>
       <td class="td-money">${fmt$(r.avg_transaction)}</td>
     </tr>`).join('');
+    makeSortable('guardianTable');
 }
 
 // ── 14. DISCOUNT IMPACT ──
@@ -525,6 +539,51 @@ async function initDiscountImpact() {
       <td class="td-num">${fmtPct(r.avg_discount_pct)}</td>
       <td style="color:var(--orange);font-family:var(--font-mono)">${fmt$(r.bwp_discount)}</td>
     </tr>`).join('');
+    makeSortable('discountTable');
+}
+
+// ── SORTABLE TABLES ──
+function makeSortable(tableId) {
+  const table = document.getElementById(tableId);
+  if (!table) return;
+  const headers = table.querySelectorAll('thead th');
+  let sortCol = -1;
+  let sortAsc = true;
+
+  headers.forEach((th, i) => {
+    th.classList.add('sortable');
+    th.addEventListener('click', () => {
+      const tbody = table.querySelector('tbody');
+      const rows = Array.from(tbody.querySelectorAll('tr'));
+
+      // Toggle direction if same column
+      if (sortCol === i) {
+        sortAsc = !sortAsc;
+      } else {
+        sortCol = i;
+        sortAsc = true;
+      }
+
+      // Update header indicators
+      headers.forEach(h => h.classList.remove('sort-asc', 'sort-desc'));
+      th.classList.add(sortAsc ? 'sort-asc' : 'sort-desc');
+
+      // Sort rows
+      rows.sort((a, b) => {
+        const aText = a.cells[i]?.textContent.trim().replace(/[$,%+]/g, '') || '';
+        const bText = b.cells[i]?.textContent.trim().replace(/[$,%+]/g, '') || '';
+        const aNum = parseFloat(aText.replace(/,/g, ''));
+        const bNum = parseFloat(bText.replace(/,/g, ''));
+        const aVal = isNaN(aNum) ? aText.toLowerCase() : aNum;
+        const bVal = isNaN(bNum) ? bText.toLowerCase() : bNum;
+        if (aVal < bVal) return sortAsc ? -1 : 1;
+        if (aVal > bVal) return sortAsc ? 1 : -1;
+        return 0;
+      });
+
+      rows.forEach(row => tbody.appendChild(row));
+    });
+  });
 }
 
 // ── SECTION MAP ──

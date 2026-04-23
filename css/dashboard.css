@@ -281,6 +281,30 @@
 .event-type-badge.race { background: rgba(255,74,74,0.15); color: var(--red); border: 1px solid rgba(255,74,74,0.3); }
 .event-type-badge.recreational { background: rgba(74,255,140,0.1); color: var(--green); border: 1px solid rgba(74,255,140,0.2); }
 
+/* ── SORTABLE TABLE HEADERS ── */
+.data-table th.sortable {
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.15s ease;
+}
+.data-table th.sortable:hover {
+  color: var(--white);
+}
+.data-table th.sortable::after {
+  content: ' ↕';
+  font-size: 9px;
+  color: var(--border);
+  margin-left: 2px;
+}
+.data-table th.sort-asc::after {
+  content: ' ↑';
+  color: var(--accent);
+}
+.data-table th.sort-desc::after {
+  content: ' ↓';
+  color: var(--accent);
+}
+
 @media (max-width: 1024px) {
   .kpi-grid { grid-template-columns: repeat(2, 1fr); }
   .charts-row { grid-template-columns: 1fr; }
