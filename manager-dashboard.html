@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dashboard — CB Bikes Manager</title>
+  <title>Dashboard — CBB Bikes Manager</title>
   <link rel="stylesheet" href="css/global.css"/>
   <link rel="stylesheet" href="css/dashboard.css"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,7 +12,7 @@
 </head>
 <body class="dashboard-body">
   <aside class="sidebar" id="sidebar">
-    <div class="sidebar-logo">CB<span>BIKES</span></div>
+    <div class="sidebar-logo">CBB<span>BIKES</span></div>
     <div class="sidebar-section">
       <span class="sidebar-section-label">Overview</span>
       <a href="#" class="sidebar-link active" data-section="overview"><span class="s-icon">📊</span> Dashboard</a>
@@ -56,9 +56,9 @@
       <div class="dash-header-right">
         <select id="dateRange" class="date-range-select">
           <option value="7">Last 7 days</option>
-          <option value="30" selected>Last 30 days</option>
+          <option value="30">Last 30 days</option>
           <option value="90">Last 90 days</option>
-          <option value="365">Last year</option>
+          <option value="365" selected>Last year</option>
         </select>
         <div class="manager-badge">
           <span class="manager-avatar">M</span>
@@ -76,7 +76,7 @@
         <div class="kpi-card"><div class="kpi-label">Unique Customers</div><div class="kpi-value" id="kpi-customers">—</div><div class="kpi-delta neutral">active buyers</div></div>
       </div>
       <div class="charts-row">
-        <div class="chart-card wide"><div class="chart-card-header"><h4>Revenue Trend</h4><span class="chart-period" id="overviewPeriodLabel">Last 30 Days</span></div><canvas id="overviewRevenueChart"></canvas></div>
+        <div class="chart-card wide"><div class="chart-card-header"><h4>Revenue Trend</h4><span class="chart-period" id="overviewPeriodLabel">Last Year</span></div><canvas id="overviewRevenueChart"></canvas></div>
         <div class="chart-card"><div class="chart-card-header"><h4>Sales Mix</h4></div><canvas id="overviewMixChart"></canvas></div>
       </div>
       <div class="charts-row">
@@ -88,21 +88,21 @@
     <!-- 1. REVENUE BY PRODUCT -->
     <section class="dash-section" id="section-revenue-product">
       <div class="section-title-row">
-  <h2>Revenue by Product</h2>
-  <div class="type-filter-wrap" id="productTypeFilter">
-    <button class="type-btn active" data-type="all">All</button>
-    <button class="type-btn" data-type="Bike">Bikes</button>
-    <button class="type-btn" data-type="Service">Services</button>
-    <button class="type-btn" data-type="Clothing">Clothing</button>
-    <button class="type-btn" data-type="Accessory">Accessories</button>
-  </div>
-  <button class="btn-export" onclick="exportTableCSV('revenueProductTable','revenue-by-product')">Export CSV</button>
-</div>
+        <h2>Revenue by Product</h2>
+        <div class="type-filter-wrap" id="productTypeFilter">
+          <button class="type-btn active" data-type="all">All</button>
+          <button class="type-btn" data-type="Bike">Bikes</button>
+          <button class="type-btn" data-type="Service">Services</button>
+          <button class="type-btn" data-type="Clothing">Clothing</button>
+          <button class="type-btn" data-type="Accessory">Accessories</button>
+        </div>
+        <button class="btn-export" onclick="exportTableCSV('revenueProductTable','revenue-by-product')">Export CSV</button>
+      </div>
       <div class="chart-card full"><canvas id="revenueProductChart" style="height:340px"></canvas></div>
       <div class="data-table-wrap">
         <table class="data-table" id="revenueProductTable">
-          <thead><tr><th>PID</th><th>Product</th><th>Type</th><th>Units</th><th>Revenue</th><th>COGS</th><th>Gross Profit</th><th>Margin %</th></tr></thead>
-          <tbody id="revenueProductBody"><tr><td colspan="6" class="loading-row">Loading…</td></tr></tbody>
+          <thead><tr><th>PID</th><th>Product</th><th>Type</th><th>Units Sold</th><th>Revenue</th><th>Cost</th><th>Gross Profit</th></tr></thead>
+          <tbody id="revenueProductBody"><tr><td colspan="7" class="loading-row">Loading…</td></tr></tbody>
         </table>
       </div>
     </section>
@@ -141,7 +141,7 @@
       <div class="data-table-wrap">
         <table class="data-table" id="bestSellingTable">
           <thead><tr><th>Rank</th><th>PID</th><th>Product</th><th>Type</th><th>Units Sold</th><th>Revenue</th><th>Unique Customers</th><th>% of Revenue</th></tr></thead>
-          <tbody id="bestSellingBody"><tr><td colspan="7" class="loading-row">Loading…</td></tr></tbody>
+          <tbody id="bestSellingBody"><tr><td colspan="8" class="loading-row">Loading…</td></tr></tbody>
         </table>
       </div>
     </section>
@@ -151,8 +151,8 @@
       <div class="section-title-row"><h2>Lagging Products</h2><div class="alert-info">Below average performers in selected period</div></div>
       <div class="data-table-wrap">
         <table class="data-table" id="laggingTable">
-          <thead><tr><th>Product</th><th>Type</th><th>Price</th><th>Units Sold</th><th>Revenue</th><th>Days Listed</th><th>Status</th></tr></thead>
-          <tbody id="laggingBody"><tr><td colspan="7" class="loading-row">Loading…</td></tr></tbody>
+          <thead><tr><th>PID</th><th>Product</th><th>Type</th><th>Price</th><th>Units Sold</th><th>Revenue</th><th>Days Listed</th><th>Status</th></tr></thead>
+          <tbody id="laggingBody"><tr><td colspan="8" class="loading-row">Loading…</td></tr></tbody>
         </table>
       </div>
     </section>
