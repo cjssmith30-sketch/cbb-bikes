@@ -189,16 +189,15 @@ function renderRevenueByProduct(data) {
   });
   document.getElementById('revenueProductChart').style.height = '340px';
   document.getElementById('revenueProductBody').innerHTML = filtered.map(p => `
-    <tr>
-      <td class="td-num" style="color:var(--grey)">${p.PID}</td>
-      <td class="td-name">${p.Name}</td>
-      <td>${p.Type}</td>
-      <td>${p.Type}</td>
-      <td class="td-num">${fmtN(p.units_sold)}</td>
-      <td class="td-money">${fmt$(p.total_revenue)}</td>
-      <td style="color:var(--red);font-family:var(--font-mono)">${fmt$(p.total_cost)}</td>
-      <td style="color:var(--green);font-family:var(--font-mono)">${fmt$(p.gross_profit)}</td>
-    </tr>`).join('');
+<tr>
+  <td class="td-num" style="color:var(--grey)">${p.PID}</td>
+  <td class="td-name">${p.Name}</td>
+  <td>${p.Type}</td>
+  <td class="td-num">${fmtN(p.units_sold)}</td>
+  <td class="td-money">${fmt$(p.total_revenue)}</td>
+  <td style="color:var(--red);font-family:var(--font-mono)">${fmt$(p.total_cost)}</td>
+  <td style="color:var(--green);font-family:var(--font-mono)">${fmt$(p.gross_profit)}</td>
+</tr>`).join('');
 }
 
 // ── 2. MONTHLY REVENUE TREND ──
